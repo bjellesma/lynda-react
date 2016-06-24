@@ -1,0 +1,6 @@
+React is a js framework developed by facebook for use with UIs
+Uses a virtual DOM
+  it is a javascript object and therefore is much faster to read and write to
+  react is so fast because it never reads from the real Dom, only writting to it when changes have been made
+Since react.js uses its own DOM, we need special developer tools
+Make sure to include the link to the react library by going to the react facebook github page
