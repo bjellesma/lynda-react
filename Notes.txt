@@ -4,3 +4,4 @@ Uses a virtual DOM
   react is so fast because it never reads from the real Dom, only writting to it when changes have been made
 Since react.js uses its own DOM, we need special developer tools
 Make sure to include the link to the react library by going to the react facebook github page
+NOTE: On 3.3

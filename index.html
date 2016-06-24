@@ -3,26 +3,30 @@
 <head>
   <script src="react.js"></script>
   <script src="react-dom.js"></script>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
   <title>React.JS Example</title>
 </head>
 <body>
+  <div id="react-container"></div>
   <script type="text/babel">
   //The following is JSX (JavaScript as XML)
   //Notice how react uses it down below
-  var HelloWorld = React.createClass({
+  //NOTE: React variables must begin with uppercase
+  var TextHolder = React.createClass({
     render: function(){
       return <div>
-        <h1>Hello world</h1>
-        <p>This is some text</p>
+        <h1>This is a textHolder</h1>
+        <p>{this.props.text}</p>
+        //the following line will get children meaning whatever is inside the tags
+        <p>{this.props.children}</p>
       </div>
     }
   });
     //you need to use reactDOM rather than react as of v0.14
     //http://stackoverflow.com/questions/26627665/error-with-basic-react-example-uncaught-typeerror-undefined-is-not-a-function
-    ReactDOM.render(<HelloWorld />,
-      document.body);
+    ReactDOM.render(<TextHolder text="Hello World">I am a child</TextHolder>,
+      document.getElementById('react-container'));
   </script>
 </body>
 </html>
