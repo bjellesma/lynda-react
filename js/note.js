@@ -24,13 +24,19 @@ var Checkbox = React.createClass({
   }
 });
 var Note = React.createClass({
+  getInitialState: function(){
+    return {editting: false}
+  },
   edit: function(){
-    alert('editing note')
+    this.setState({editing: true});
+  },
+  save: function(){
+    this.setState({editing: false});
   },
   remove: function(){
     alert('removing note')
   },
-  render: function(){
+  renderDisplay: function(){
     return <div className="note">
     <p>{this.props.children}</p>
       <span>
@@ -40,6 +46,22 @@ var Note = React.createClass({
           className="btn btn-danger glyphicon glyphicon-trash"/>
       </span>
     </div>
+  },
+  renderForm: function(){
+    return (
+      <div className="note">
+      <textarea defaultValue={this.props.children}
+      className="form-control"></textarea>
+      <button onClick={this.save} className="bin btn-success btn-sm glyphicon glyphicon-floppy-disk" />
+      </div>
+    )
+  },
+  render: function(){
+    if (this.state.editing){
+      return this.renderForm();
+    }else{
+      return this.renderDisplay();
+    }
   }
 });
   //you need to use reactDOM rather than react as of v0.14
