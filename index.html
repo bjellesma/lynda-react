@@ -10,28 +10,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
   integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <!-- The majority of our react js is in the atached folder -->
+  <script src="js/note.js" type="text/babel"></script>
   <title>React.JS Example</title>
 </head>
 <body>
   <div id="react-container"></div>
-  <script type="text/babel">
-  //The following is JSX (JavaScript as XML)
-  //Notice how react uses it down below
-  //NOTE: React variables must begin with uppercase
-  var TextHolder = React.createClass({
-    render: function(){
-      return <div>
-        <h1>This is a textHolder</h1>
-        <p>{this.props.text}</p>
-        //the following line will get children meaning whatever is inside the tags
-        <p>{this.props.children}</p>
-      </div>
-    }
-  });
-    //you need to use reactDOM rather than react as of v0.14
-    //http://stackoverflow.com/questions/26627665/error-with-basic-react-example-uncaught-typeerror-undefined-is-not-a-function
-    ReactDOM.render(<TextHolder text="Hello World">I am a child</TextHolder>,
-      document.getElementById('react-container'));
-  </script>
+
 </body>
 </html>
