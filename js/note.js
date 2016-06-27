@@ -83,14 +83,32 @@ var Board = React.createClass({
       }
     }
   },
+  getInitialState: function(){
+    //make an array to hold initial notes
+    return {
+      notes: [
+        "Call Connie",
+        "Email Doctor"
+      ]
+    };
+  },
   render: function(){
-    return <div className="board">{this.props.count}</div>
+    //this.state.notes.map calls on notes array
+    //basically this is a for statement to iterate through the array
+    return <div className="board">
+
+      {this.state.notes.map(function(note, i){
+        return (
+          <div className="note">
+          <Note key={i}>{note}</Note>
+          <Checkbox />
+          </div>
+        );
+      })}
+    </div>
   }
 });
   //you need to use reactDOM rather than react as of v0.14
   //http://stackoverflow.com/questions/26627665/error-with-basic-react-example-uncaught-typeerror-undefined-is-not-a-function
-  ReactDOM.render(<div>
-                  <Board count={10} />
-                  <Checkbox />
-                  </div>,
+  ReactDOM.render(<Board count={10} />,
     document.getElementById('react-container'));
