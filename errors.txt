@@ -1,0 +1,2 @@
+01: The count property of the board object must be a number so it is being entered in as not a number. the error is self-explainitory.
+02: The count property of the board object exceeds the alotted amount.

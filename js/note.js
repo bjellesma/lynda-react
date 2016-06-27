@@ -67,10 +67,30 @@ var Note = React.createClass({
     }
   }
 });
+
+var Board = React.createClass({
+
+  //object
+  propTypes: {
+
+    count: function(props, propName){
+      var maxNoteCount = 100;
+      if(typeof props[propName] !== "number"){
+        return new Error("Error 01. The count property must be a number");
+      }
+      if(props[propName] > maxNoteCount){
+        return new Error("Error 02. You have " + props[propName] + " notes which is more than the " + maxNoteCount + " allowed")
+      }
+    }
+  },
+  render: function(){
+    return <div className="board">{this.props.count}</div>
+  }
+});
   //you need to use reactDOM rather than react as of v0.14
   //http://stackoverflow.com/questions/26627665/error-with-basic-react-example-uncaught-typeerror-undefined-is-not-a-function
   ReactDOM.render(<div>
-                  <Note>I am a child</Note>
+                  <Board count={10} />
                   <Checkbox />
                   </div>,
     document.getElementById('react-container'));
