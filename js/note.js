@@ -83,15 +83,23 @@ var Board = React.createClass({
       }
     }
   },
+  nextId: function(){
+    //every time we create a new note, we will be creating a unique id for the note
+    this.uniqueId = this.uniqueId || 0;
+    return this.uniqueId++;
+  },
   add: function(text){
     var arr = this.state.notes;
-    arr.push(text);
+    arr.push({
+      id: this.nextId(),
+      note: text
+    });
     this.setState({notes:arr});
     //TODO automatically edit
   },
   update: function(newText, i){
     var arr = this.state.notes;
-    arr[i] = newText;
+    arr[i].note = newText;
     //TODO varidate that note is string
     //use arr as the new array state for notes
     this.setState({note:arr});
@@ -104,8 +112,8 @@ var Board = React.createClass({
   eachNote: function(note, i){
     return (
       <div className="note">
-      <Note key={i} index={i}
-      onChange={this.update} onRemove={this.remove}>{note}</Note>
+      <Note key={note.id} index={i}
+      onChange={this.update} onRemove={this.remove}>{note.note}</Note>
       <Checkbox />
       </div>
     )
