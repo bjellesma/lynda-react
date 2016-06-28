@@ -69,7 +69,7 @@ var Note = React.createClass({
 });
 
 var Board = React.createClass({
-
+//TODO validate this = current note
   //object
   propTypes: {
 
@@ -83,10 +83,17 @@ var Board = React.createClass({
       }
     }
   },
+  add: function(text){
+    var arr = this.state.notes;
+    arr.push(text);
+    this.setState({notes:arr});
+    //TODO automatically edit
+  },
   update: function(newText, i){
     var arr = this.state.notes;
     arr[i] = newText;
     //TODO varidate that note is string
+    //use arr as the new array state for notes
     this.setState({note:arr});
   },
   remove: function(i){
@@ -107,16 +114,16 @@ var Board = React.createClass({
     //make an array to hold initial notes
     return {
       notes: [
-        "Call Connie",
-        "Email Doctor"
       ]
     };
   },
   render: function(){
+    //TODO save state of all notes to a file
     //this.state.notes.map calls on notes array
     //basically this is a for statement to iterate through the array
     return <div className="board">
       {this.state.notes.map(this.eachNote)}
+      <button className="btn btn-sm glyphicon glyphicon-plus" onClick={this.add.bind(null, "New Note")} />
     </div>
   }
 });
