@@ -32,12 +32,12 @@ var Note = React.createClass({
   },
   save: function(){
     //get the ref attribute of the node being used
-    var ref = ReactDOM.findDOMNode(this.refs.newText).value;
-    alert("Value of note is now " + ref);
+    //whenever the onChange event is triggered
+    this.props.onChange(ReactDOM.findDOMNode(this.refs.newText).value, this.props.index);
     this.setState({editing: false});
   },
   remove: function(){
-    alert('removing note')
+    this.props.onRemove(this.props.index);
   },
   renderDisplay: function(){
     return <div className="note">
@@ -83,6 +83,26 @@ var Board = React.createClass({
       }
     }
   },
+  update: function(newText, i){
+    var arr = this.state.notes;
+    arr[i] = newText;
+    //TODO varidate that note is string
+    this.setState({note:arr});
+  },
+  remove: function(i){
+    var arr = this.state.notes;
+    arr.splice(i, 1);
+    this.setState({notes:arr});
+  },
+  eachNote: function(note, i){
+    return (
+      <div className="note">
+      <Note key={i} index={i}
+      onChange={this.update} onRemove={this.remove}>{note}</Note>
+      <Checkbox />
+      </div>
+    )
+  },
   getInitialState: function(){
     //make an array to hold initial notes
     return {
@@ -96,15 +116,7 @@ var Board = React.createClass({
     //this.state.notes.map calls on notes array
     //basically this is a for statement to iterate through the array
     return <div className="board">
-
-      {this.state.notes.map(function(note, i){
-        return (
-          <div className="note">
-          <Note key={i}>{note}</Note>
-          <Checkbox />
-          </div>
-        );
-      })}
+      {this.state.notes.map(this.eachNote)}
     </div>
   }
 });
