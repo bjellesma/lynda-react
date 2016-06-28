@@ -4,4 +4,17 @@ Uses a virtual DOM
   react is so fast because it never reads from the real Dom, only writting to it when changes have been made
 Since react.js uses its own DOM, we need special developer tools
 Make sure to include the link to the react library by going to the react facebook github page
-NOTE: On 3.3
+Life Cycle: Mounting
+  getDefaultProps: called once
+  getInitialState: called once
+  componentWillMount: called right before render, last chance to affect state prior to render
+  render: only required method
+  componentDidMount: after successful render, can not access DOM
+Life Cycle: Updating
+  componentWillReceiveProps: chance to now update state and give props
+  shouldComponentUpdate: invoked before rendering to improve performance
+  componentWillUpdate: invoked before rendering to improve performance
+  render
+  componentDidUpdate
+Life Cycle: unmounting
+  componentWillUnmount: chance to unmount DOM

@@ -27,6 +27,9 @@ var Note = React.createClass({
   getInitialState: function(){
     return {editting: false}
   },
+  componentDidMount: function(){
+    var node = ReactDOM.findDOMNode(this);
+  },
   edit: function(){
     this.setState({editing: true});
   },
@@ -88,6 +91,18 @@ var Board = React.createClass({
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
   },
+  componentWillMount: function(){
+    //this function is populating our notes with JSON calls
+    var self = this;
+    if(this.props.count){
+      $.getJSON("http://baconipsum.com/api/?type=all-meat&sentences=" +
+        this.props.count + "&start-with-lorem=1&callback=?", function(results){
+          results[0].split('. ').forEach(function(sentence){
+            self.add(sentence.substring(0,40));
+          });
+        });
+    }
+  },
   add: function(text){
     var arr = this.state.notes;
     arr.push({
@@ -137,5 +152,5 @@ var Board = React.createClass({
 });
   //you need to use reactDOM rather than react as of v0.14
   //http://stackoverflow.com/questions/26627665/error-with-basic-react-example-uncaught-typeerror-undefined-is-not-a-function
-  ReactDOM.render(<Board count={10} />,
+  ReactDOM.render(<Board count={50} />,
     document.getElementById('react-container'));
