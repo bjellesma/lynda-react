@@ -18,8 +18,7 @@ var Checkbox = React.createClass({
       msg = "Still to do!";
     }
     return <div>
-      <input type="checkbox" onChange={this.handleCheck}/>
-      <p>{msg}</p>
+      <input type="checkbox" onChange={this.handleCheck}/>{msg}
     </div>
   }
 });
@@ -128,8 +127,8 @@ var Board = React.createClass({
     return (
       <div className="note">
       <Note key={note.id} index={i}
-      onChange={this.update} onRemove={this.remove}>{note.note}</Note>
-      <Checkbox />
+      onChange={this.update} onRemove={this.remove}>{note.note}<Checkbox /></Note>
+
       </div>
     )
   },
